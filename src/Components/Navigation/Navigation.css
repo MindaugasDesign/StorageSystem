@@ -1,0 +1,52 @@
+#Main_Navigation {
+  background-color: #edf2fc;
+  height: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5em;
+}
+
+#Main_Navigation .logo_loc img {
+  height: 100px;
+  width: 200px;
+}
+#Main_Navigation .logo_loc img:hover {
+  cursor: pointer;
+}
+
+#Main_Navigation .direct_buttons {
+  width: auto;
+}
+
+#Main_Navigation .direct_buttons .single_button {
+  padding: 0.7em;
+  border-radius: 8px;
+  border: 2px solid #0f265c;
+  color: #091635;
+  font-family: "Inconsolata", monospace;
+  font-weight: 600;
+  font-size: 1em;
+  background-color: #edf2fc;
+}
+
+#Main_Navigation .direct_buttons .single_button:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+  background-color: #809bcc;
+}
+
+#Main_Navigation .direct_buttons button {
+  margin-right: 1em;
+  margin-left: 1em;
+}
+
+#Main_Navigation .user_spot img {
+  height: 2rem;
+  margin-left: 1em;
+}
+
+#Main_Navigation .user_spot img:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}

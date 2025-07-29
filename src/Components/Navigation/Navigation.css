@@ -33,7 +33,7 @@
 #Main_Navigation .direct_buttons .single_button:hover {
   transform: scale(1.05);
   cursor: pointer;
-  background-color: #809bcc;
+  background-color: #cbd4e6;
 }
 
 #Main_Navigation .direct_buttons button {

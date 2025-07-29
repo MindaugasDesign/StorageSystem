@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Mindaugas",
+    "lastName": "Rašimavičius",
+    "role": "Logistics Coordinator",
+    "level": "Admin",
+    "login": "ekmr",
+    "password": "ekmr-123"
+  },
+  {
+    "name": "Justina",
+    "lastName": "Rašimavičė",
+    "role": "Accountants Assintant",
+    "level": "Accounting",
+    "login": "ekjr",
+    "password": "ekjr-123"
+  },
+  {
+    "name": "Karolis",
+    "lastName": "Pratusis ",
+    "role": "Logistics Specialist",
+    "level": "User",
+    "login": "ekkp",
+    "password": "ekkp-123"
+  }
+]

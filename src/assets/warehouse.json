@@ -1,0 +1,26 @@
+[
+  {
+    "rivile": "MECH_CO_SEAT",
+    "name": "Codi Mechanizmas",
+    "itemId": "---",
+    "supplier": "Thailand",
+    "UoM": "vnt.",
+    "totalQuantity": "Total of all package quantities ",
+    "packages": [
+      {
+        "barcode": "EK-123456",
+        "shippingRemarks": "Lithuania 2025/15",
+        "DoA": "2025-07-25",
+        "quantity": "50"
+      },
+      {
+        "barcode": "EK-123457",
+        "shippingRemarks": "Lithuania 2025/15",
+        "DoA": "2025-07-25",
+        "quantity": "50"
+      }
+    ],
+    "info": "When clicked see all the packages in the item",
+    "stockkeeper": "Modestas"
+  }
+]

@@ -1,0 +1,56 @@
+#open_Item {
+  font-size: 3em;
+  margin-left: 1em;
+}
+
+#list_Container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1.5em;
+  margin-left: 2em;
+}
+
+.itemContainer {
+  background-color: #ffffff;
+  width: 20%;
+  border: 1px solid black;
+  border-radius: 16px;
+  padding: 1em;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+.itemContainer p {
+  margin: 0.5em;
+}
+
+.barcodeLoc {
+  text-align: center;
+}
+
+.download_Btn img {
+  width: 2em;
+}
+
+.download_Btn {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin-right: 1em;
+}
+
+.download_Btn img:hover {
+  cursor: pointer;
+  transform: scale(1.1);
+}
+
+.itemRivile,
+.itemQuantity,
+.itemDoA {
+  font-weight: bold;
+  font-size: large;
+}

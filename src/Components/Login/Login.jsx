@@ -30,7 +30,13 @@ export function Login() {
       if (isOnline) {
         navigate("/main");
         const userPowers = matchedUser.level;
+
         localStorage.setItem("Power", userPowers);
+        // setTimeout(() => {
+        //   localStorage.removeItem("Power");
+        //   navigate("/");
+        //   window.dispatchEvent(new Event("storage"));
+        // }, 20 * 1000);
         window.dispatchEvent(new Event("storage"));
       }
     } else {

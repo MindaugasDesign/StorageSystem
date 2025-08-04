@@ -1,0 +1,55 @@
+.table_Wrapper {
+  padding: 1em;
+}
+
+#pageTitle {
+  margin-left: 2em;
+}
+
+.table_Headers {
+  background-color: #0f265c;
+  color: #edf2fc;
+  width: 100%;
+}
+
+#wh_Stock {
+  width: 100%;
+}
+
+.header_Row th {
+  padding: 0.5em;
+}
+
+.body_Row:nth-child(even) {
+  background-color: #c6d1eb;
+}
+
+.detail_Row {
+  text-align: center;
+}
+
+.detail_Row:hover {
+  cursor: pointer;
+  transform: scale(1.05);
+}
+
+.edit_Btn img,
+.delete_Btn img {
+  width: 1.75em;
+}
+
+.item__Controls img:hover {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+.item__Controls {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  gap: 0.5em;
+  width: 3.5em;
+}
+#Admin_Power {
+  display: none;
+}

@@ -1,26 +1,112 @@
 [
   {
     "rivile": "MECH_CO_SEAT",
-    "name": "Codi Mechanizmas",
+    "name": "Seat steel insert (mechanism)",
     "itemId": "---",
     "supplier": "Thailand",
     "UoM": "vnt.",
-    "totalQuantity": "Total of all package quantities ",
     "packages": [
       {
         "barcode": "EK-123456",
         "shippingRemarks": "Lithuania 2025/15",
         "DoA": "2025-07-25",
-        "quantity": "50"
+        "quantity": "50",
+        "receivedBy": "Modestas"
       },
       {
         "barcode": "EK-123457",
         "shippingRemarks": "Lithuania 2025/15",
         "DoA": "2025-07-25",
-        "quantity": "50"
+        "quantity": "50",
+        "receivedBy": "Modestas"
       }
     ],
-    "info": "When clicked see all the packages in the item",
-    "stockkeeper": "Modestas"
+    "stockkeeper": "Modestas",
+    "location": "Pagrindinis Sandėlis"
+  },
+  {
+    "rivile": "MECH_CO_FOOT",
+    "name": "Foot flap 7324.032.001",
+    "itemId": "---",
+    "supplier": "Vietnam",
+    "UoM": "vnt.",
+    "packages": [
+      {
+        "barcode": "EK-123456",
+        "shippingRemarks": "Lithuania 2025/15",
+        "DoA": "2025-07-25",
+        "quantity": "200",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-123457",
+        "shippingRemarks": "Lithuania 2025/15",
+        "DoA": "2025-07-25",
+        "quantity": "200",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-123458",
+        "shippingRemarks": "Lithuania 2025/15",
+        "DoA": "2025-07-25",
+        "quantity": "200",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-123459",
+        "shippingRemarks": "Lithuania 2025/15",
+        "DoA": "2025-07-25",
+        "quantity": "200",
+        "receivedBy": "Modestas"
+      }
+    ],
+    "stockkeeper": "Modestas",
+    "location": "Pagrindinis Sandėlis"
+  },
+  {
+    "rivile": "PUTU_PE",
+    "name": "PUTU PE kevalas",
+    "itemId": "---",
+    "supplier": "Komex",
+    "UoM": "m.",
+    "packages": [
+      {
+        "barcode": "EK-456546",
+        "shippingRemarks": "Komex",
+        "DoA": "2024-01-01",
+        "quantity": "440",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-456547",
+        "shippingRemarks": "Komex",
+        "DoA": "2024-01-01",
+        "quantity": "440",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-456548",
+        "shippingRemarks": "Komex",
+        "DoA": "2024-01-01",
+        "quantity": "440",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-456549",
+        "shippingRemarks": "Komex",
+        "DoA": "2024-01-01",
+        "quantity": "440",
+        "receivedBy": "Modestas"
+      },
+      {
+        "barcode": "EK-456550",
+        "shippingRemarks": "Komex",
+        "DoA": "2024-01-01",
+        "quantity": "440",
+        "receivedBy": "Modestas"
+      }
+    ],
+    "stockkeeper": "Modestas",
+    "location": "Pagrindinis Sandėlis"
   }
 ]

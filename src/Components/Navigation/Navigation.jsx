@@ -24,6 +24,10 @@ export function Navigation() {
     navigate("/");
   };
 
+  const newItemPage = () => {
+    navigate("/new_item");
+  };
+
   useEffect(() => {
     const updateButtons = () => {
       const user = localStorage.getItem("Power");
@@ -56,7 +60,11 @@ export function Navigation() {
           <img src={logo} alt="Ekornes Logo" />
         </div>
         <div className="direct_buttons">
-          <button className="single_button" id="Admin2_Power">
+          <button
+            className="single_button"
+            id="Admin2_Power"
+            onClick={() => newItemPage()}
+          >
             Create New Item
           </button>
           <button className="single_button">Give to production</button>

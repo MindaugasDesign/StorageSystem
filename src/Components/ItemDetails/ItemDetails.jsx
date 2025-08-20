@@ -52,7 +52,7 @@ function SingleItem({ details, itemName, itemUnit, itemRivile }) {
     const imgProps = pdf.getImageProperties(imgData);
     const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-    pdf.addImage(imgData, "PNG", 30, 20, pdfWidth, pdfHeight);
+    pdf.addImage(imgData, "PNG", 15, 10, pdfWidth, pdfHeight);
     pdf.save(`${itemName}_${details.barcode}.pdf`);
   };
 

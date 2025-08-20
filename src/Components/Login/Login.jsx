@@ -2,7 +2,6 @@ import { useRef, useEffect, useState } from "react";
 import "./Login.css";
 import userPass from "/src/assets/key-square-2-svgrepo-com.svg";
 import userLogo from "/src/assets/user-rounded-svgrepo-com.svg";
-import users from "/src/assets/users.json";
 import { useNavigate } from "react-router-dom";
 
 export function Login() {
@@ -11,9 +10,13 @@ export function Login() {
   const [userPassword, setUserPassword] = useState("");
   const [data, setData] = useState("");
   const isOnline = useRef(false);
+
   useEffect(() => {
-    setData(users);
-    console.log(users);
+    fetch("http://localhost:7750/systemusers")
+      .then((res) => res.json())
+      .then((data) => {
+        setData(data);
+      });
   }, []);
 
   const loggedUser = (e) => {
@@ -25,18 +28,18 @@ export function Login() {
     );
 
     if (matchedUser) {
-      console.log("Login successful:", matchedUser.name);
       isOnline.current = true;
       if (isOnline) {
         navigate("/main");
         const userPowers = matchedUser.level;
-
         localStorage.setItem("Power", userPowers);
-        // setTimeout(() => {
-        //   localStorage.removeItem("Power");
-        //   navigate("/");
-        //   window.dispatchEvent(new Event("storage"));
-        // }, 20 * 1000);
+        localStorage.setItem("LoggedUser", matchedUser.name);
+        setTimeout(() => {
+          localStorage.removeItem("Power");
+          localStorage.removeItem("LoggedUser");
+          navigate("/");
+          window.dispatchEvent(new Event("storage"));
+        }, 60 * 60 * 1000);
         window.dispatchEvent(new Event("storage"));
       }
     } else {

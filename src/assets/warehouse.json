@@ -108,5 +108,51 @@
     ],
     "stockkeeper": "Modestas",
     "location": "Pagrindinis Sandėlis"
+  },
+  {
+    "rivile": "BASESCH_BSP",
+    "name": "Legs Aluminium star base for chair B4",
+    "itemId": "BLACK IMG 02.10.120",
+    "supplier": "Vision",
+    "UoM": "vnt.",
+    "packages": [
+      {
+        "barcode": "EK-112245",
+        "shippingRemarks": "Vision-*****",
+        "DoA": "2025-04-24",
+        "quantity": "36",
+        "receivedBy": "Justas"
+      },
+      {
+        "barcode": "EK-112246",
+        "shippingRemarks": "Vision-*****",
+        "DoA": "2025-04-24",
+        "quantity": "36",
+        "receivedBy": "Justas"
+      },
+      {
+        "barcode": "EK-112247",
+        "shippingRemarks": "Vision-*****",
+        "DoA": "2025-04-24",
+        "quantity": "36",
+        "receivedBy": "Justas"
+      },
+      {
+        "barcode": "EK-112248",
+        "shippingRemarks": "Vision-*****",
+        "DoA": "2025-05-24",
+        "quantity": "36",
+        "receivedBy": "Justas"
+      },
+      {
+        "barcode": "EK-112249",
+        "shippingRemarks": "Vision-*****",
+        "DoA": "2025-06-24",
+        "quantity": "36",
+        "receivedBy": "Justas"
+      }
+    ],
+    "stockkeeper": "Mindaugas",
+    "location": "Pagrindinis Sandėlis"
   }
 ]

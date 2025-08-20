@@ -1,0 +1,109 @@
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
+  padding-top: 100px;
+}
+
+/* Modal Content */
+.content-modal {
+  background-color: #edf2fc;
+  margin: auto;
+  padding: 30px 40px;
+  border: 1px solid #888;
+  border-radius: 16px;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Fade-in effect */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.close {
+  color: #888;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+}
+
+.modalHeader {
+  text-align: center;
+  font-size: 1.6rem;
+  color: #333;
+  margin-bottom: 1em;
+}
+
+.receiveItemCont {
+  background-color: #ffffff;
+  padding: 1.5em;
+  border-radius: 16px;
+  box-shadow: 5px 10px 8px #888888;
+}
+
+form#newItem {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+form#newItem input[type="text"],
+form#newItem input[type="number"],
+form#newItem input[type="date"],
+form#newItem select {
+  padding: 0.6em 0.8em;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  background-color: #ffe0e9; /* soft pink */
+  font-size: 1rem;
+  transition: border-color 0.3s;
+}
+
+form#newItem input[type="text"]:focus,
+form#newItem input[type="number"]:focus,
+form#newItem input[type="date"]:focus,
+form#newItem select:focus {
+  outline: none;
+  border-color: #3498db;
+  background-color: #fff;
+}
+
+form#newItem input[type="submit"] {
+  background-color: #3498db;
+  color: white;
+  padding: 0.8em;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+form#newItem input[type="submit"]:hover {
+  background-color: #2980b9;
+}

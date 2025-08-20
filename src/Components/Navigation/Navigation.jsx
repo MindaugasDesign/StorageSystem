@@ -2,18 +2,26 @@ import { useNavigate } from "react-router-dom";
 import "./Navigation.css";
 import logo from "/src/assets/Ekornes_logo_desktop.svg";
 import logOut from "/src/assets/logout-2-svgrepo-com.svg";
-import user from "/src/assets/user-svgrepo-com.svg";
-import { useEffect } from "react";
+import userIcon from "/src/assets/user-svgrepo-com.svg";
+import { useEffect, useState } from "react";
+
 export function Navigation() {
   const navigate = useNavigate();
+  const [userRole, setUserRole] = useState(localStorage.getItem("Power"));
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      setUserRole(localStorage.getItem("Power"));
+    };
+    window.addEventListener("storage", handleStorageChange);
+    return () => window.removeEventListener("storage", handleStorageChange);
+  }, []);
   const homePage = () => {
-    const loggedIn = localStorage.getItem("Power");
-    if (loggedIn) {
+    if (userRole) {
       navigate("/main");
     } else {
       navigate("/");
     }
-    // navigate("/main");
   };
   const loginScreen = () => {
     navigate("/");
@@ -21,64 +29,44 @@ export function Navigation() {
   const logOutBtn = () => {
     localStorage.removeItem("Power");
     window.dispatchEvent(new Event("storage"));
+    setUserRole(null); // Ensure local state updates immediately
     navigate("/");
   };
-
   const newItemPage = () => {
     navigate("/new_item");
   };
-
-  useEffect(() => {
-    const updateButtons = () => {
-      const user = localStorage.getItem("Power");
-      const adminButton1 = document.querySelector("#Admin1_Power");
-      const adminButton2 = document.querySelector("#Admin2_Power");
-
-      if (user === "Admin") {
-        adminButton1.style.display = "inline-block";
-        adminButton2.style.display = "inline-block";
-      } else if (user === "Accounting") {
-        adminButton1.style.display = "inline-block";
-      } else {
-        adminButton1.style.display = "none";
-        adminButton2.style.display = "none";
-      }
-    };
-
-    updateButtons();
-    window.addEventListener("storage", updateButtons);
-
-    return () => {
-      window.removeEventListener("storage", updateButtons);
-    };
-  }, [user]);
-
+  const receiveItemPage = () => {
+    navigate("receive_items");
+  };
+  const isLoggedIn = !!userRole;
   return (
-    <>
-      <nav id="Main_Navigation">
-        <div className="logo_loc" onClick={() => homePage()}>
-          <img src={logo} alt="Ekornes Logo" />
-        </div>
+    <nav id="Main_Navigation">
+      <div className="logo_loc" onClick={homePage}>
+        <img src={logo} alt="Ekornes Logo" />
+      </div>
+      {isLoggedIn && (
         <div className="direct_buttons">
-          <button
-            className="single_button"
-            id="Admin2_Power"
-            onClick={() => newItemPage()}
-          >
-            Create New Item
-          </button>
+          {(userRole === "Admin" || userRole === "Accounting") && (
+            <button className="single_button" onClick={newItemPage}>
+              Create New Item
+            </button>
+          )}
           <button className="single_button">Give to production</button>
-          <button className="single_button">Receive items</button>
-          <button className="single_button">Find Item</button>
-          <button className="single_button" id="Admin1_Power">
-            Download Data
+          <button className="single_button" onClick={receiveItemPage}>
+            Receive items
           </button>
+          <button className="single_button">Find Item</button>
+          {userRole === "Admin" && (
+            <button className="single_button">Download Data</button>
+          )}
         </div>
-        <div className="user_spot">
-          <img src={user} alt="User SVG" onClick={() => loginScreen()} />
-          <img src={logOut} alt="User SVG" onClick={() => logOutBtn()} />
-        </div>
-      </nav>
-    </>
+      )}
+      <div className="user_spot">
+        <img src={userIcon} alt="User Icon" onClick={loginScreen} />
+        {isLoggedIn && (
+          <img src={logOut} alt="Log Out Icon" onClick={logOutBtn} />
+        )}
+      </div>
+    </nav>
   );
 }

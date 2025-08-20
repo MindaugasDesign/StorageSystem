@@ -5,6 +5,7 @@ import { Login } from "./Components/Login/Login";
 import { Homescreen } from "./Components/Homescreen/Homescreen";
 import { ItemDetails } from "./Components/ItemDetails/ItemDetails";
 import { NewItem } from "./Components/NewItem/NewItem";
+import { ReceiveItems } from "./Components/ReceiveItems/ReceiveItems";
 
 function App() {
   return (
@@ -42,6 +43,14 @@ function App() {
           element={
             <div id="newItemContainer">
               <NewItem />
+            </div>
+          }
+        />
+        <Route
+          path="receive_items"
+          element={
+            <div id="receive__Items">
+              <ReceiveItems />
             </div>
           }
         />

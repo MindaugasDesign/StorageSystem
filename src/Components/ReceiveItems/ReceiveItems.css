@@ -1,0 +1,56 @@
+.ha {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.controlBtns_Receive img {
+  width: 3em;
+}
+
+.controlBtns_AddItem img {
+  width: 5em;
+}
+
+.allitems {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  /* border: 1px solid black; */
+  border-radius: 12px;
+  /* padding: 1em; */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.allitems h2 {
+  font-size: 1.2em;
+  margin: 0 0.5em;
+}
+
+.allitems p {
+  margin: 0.25em 0.5em;
+  font-size: 1em;
+}
+
+.barcodeLoc {
+  text-align: center;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
+
+#labelPrintArea {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1em;
+  /* width: 100%; */
+  margin: 0 2em;
+}
+
+#label {
+  width: 21cm;
+  height: 10cm;
+}

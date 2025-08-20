@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import data from "/src/assets/warehouse.json";
+// import data from "/src/assets/warehouse.json";
 import { useNavigate } from "react-router-dom";
 import "./Homescreen.css";
 import editBtn from "/src/assets/edit-2-svgrepo-com.svg";
@@ -7,15 +7,10 @@ import deletBtn from "/src/assets/delete-2-svgrepo-com.svg";
 
 function getDate() {
   const today = new Date();
-  const month = today.getMonth() + 1;
   const year = today.getFullYear();
-  const date = today.getDate();
-
-  if (month < 10 && date < 10) {
-    return `${year}-0${month}-0${date}`;
-  } else {
-    return `${year}-${month}-${date}`;
-  }
+  const month = (today.getMonth() + 1).toString().padStart(2, "0");
+  const date = today.getDate().toString().padStart(2, "0");
+  return `${year}-${month}-${date}`;
 }
 
 function calculateQuantity(arrays) {
@@ -49,7 +44,11 @@ export function Homescreen() {
   }
 
   useEffect(() => {
-    setWarehouseData(data);
+    fetch("http://localhost:7750/items")
+      .then((res) => res.json())
+      .then((data) => {
+        setWarehouseData(data);
+      });
   }, []);
 
   return (

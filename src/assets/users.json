@@ -22,5 +22,13 @@
     "level": "User",
     "login": "ekkp",
     "password": "ekkp-123"
+  },
+  {
+    "name": "Modestas",
+    "lastName": "Šakinis ",
+    "role": "Sandėlininkas",
+    "level": "User",
+    "login": "ekms",
+    "password": "ekms-123"
   }
 ]

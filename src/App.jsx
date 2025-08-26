@@ -6,11 +6,17 @@ import { Homescreen } from "./Components/Homescreen/Homescreen";
 import { ItemDetails } from "./Components/ItemDetails/ItemDetails";
 import { NewItem } from "./Components/NewItem/NewItem";
 import { ReceiveItems } from "./Components/ReceiveItems/ReceiveItems";
+import { useRef } from "react";
+import { ReceiveItemLog } from "./Components/ReceivedItemLog/ReceivedItemLog";
+import { GiveToProduction } from "./Components/GiveToProduction/GiveToProduction";
+import { FindItem } from "./Components/FindItem/FindItem";
 
 function App() {
+  const tableRef = useRef(null); // ✅ create ref ONCE
+
   return (
     <>
-      <Navigation />
+      <Navigation tableRef={tableRef} />
       {/* Route to every page */}
       <Routes>
         <Route
@@ -22,10 +28,18 @@ function App() {
           }
         />
         <Route
+          path="/testpage"
+          element={
+            <div id="testx">
+              <ReceiveItemLog />
+            </div>
+          }
+        />
+        <Route
           path="main"
           element={
             <div id="home_Page">
-              <Homescreen />
+              <Homescreen tableRef={tableRef} />
             </div>
           }
         />
@@ -51,6 +65,22 @@ function App() {
           element={
             <div id="receive__Items">
               <ReceiveItems />
+            </div>
+          }
+        />
+        <Route
+          path="/scan_out"
+          element={
+            <div id="gtp_page">
+              <GiveToProduction />
+            </div>
+          }
+        />
+        <Route
+          path="/find_item"
+          element={
+            <div id="findItem_page">
+              <FindItem />
             </div>
           }
         />

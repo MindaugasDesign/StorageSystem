@@ -1,0 +1,51 @@
+.tuk,
+.tuks {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+}
+
+.tuks {
+  margin-left: 20px;
+}
+
+.amnt {
+  font-weight: bold;
+}
+
+.itemDetailed .headerInfo {
+  display: flex;
+  flex-direction: row;
+  gap: 0.5em;
+}
+
+.item__Name,
+.item__Amount,
+.box__Barcode,
+.box__Amount {
+  font-weight: bold;
+}
+
+.itemDetailed .headerInfo img {
+  margin-left: 2em;
+  width: 1.75em;
+}
+
+.itemDetailed .headerInfo img:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.boxDetails {
+  display: flex;
+  gap: 2em;
+}
+
+.details_Visable {
+  margin-left: 3em;
+}
+
+#closed {
+  display: none;
+}

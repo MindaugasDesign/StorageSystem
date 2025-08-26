@@ -1,55 +1,80 @@
+/* Wrapper */
 .table_Wrapper {
-  padding: 1em;
+  padding: 1.5em;
+  border-radius: 8px;
 }
 
+/* Page Title */
 #pageTitle {
   margin-left: 2em;
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #0f265c;
 }
 
-.table_Headers {
-  background-color: #0f265c;
-  color: #edf2fc;
-  width: 100%;
-}
-
+/* Table Base */
 #wh_Stock {
   width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #d0d6e5;
+  border-radius: 6px;
+  overflow: hidden;
+  font-size: 1em;
 }
 
+/* Headers */
+.table_Headers,
 .header_Row th {
-  padding: 0.5em;
+  background-color: #0f265c; /* kept as is */
+  color: #edf2fc;
+  text-align: left;
+  padding: 0.8em;
+  font-size: 1.1em;
 }
 
+/* Table Cells */
+#wh_Stock td {
+  border: 1px solid #d0d6e5;
+  padding: 0.7em 1em;
+  font-size: 1em;
+}
+
+/* Alternating Rows */
 .body_Row:nth-child(even) {
-  background-color: #c6d1eb;
+  background-color: #c6d1eb; /* kept as is */
 }
 
+/* Row Hover */
 .detail_Row {
   text-align: center;
+  transition: transform 0.15s ease, background-color 0.15s ease;
 }
 
 .detail_Row:hover {
   cursor: pointer;
-  transform: scale(1.05);
+  transform: scale(1.02);
+  background-color: #dce5f7;
+  font-weight: bold;
 }
 
-.edit_Btn img,
-.delete_Btn img {
-  width: 1.75em;
+/* Controls */
+.item__Controls {
+  display: flex;
+  justify-content: center;
+  gap: 0.5em;
+}
+
+.item__Controls img {
+  width: 1.4em;
+  transition: transform 0.15s ease;
 }
 
 .item__Controls img:hover {
-  transform: scale(1.2);
+  transform: scale(1.25);
   cursor: pointer;
 }
 
-.item__Controls {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  gap: 0.5em;
-  width: 3.5em;
-}
+/* Hide admin area */
 #Admin_Power {
   display: none;
 }

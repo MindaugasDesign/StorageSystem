@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ItemModal.css";
+import { useEffect } from "react";
 
 export function ItemModal({ userData, submitItem }) {
   const [itemValue, setItemValue] = useState("");
@@ -9,20 +10,39 @@ export function ItemModal({ userData, submitItem }) {
   const [containerName, setContainerName] = useState("");
   const [paperSize, setPaperSize] = useState("");
 
+  const [whDb, setWarehouseDB] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:7750/items")
+      .then((res) => res.json())
+      .then((data) => {
+        setWarehouseDB(data);
+      });
+  }, []);
+
   const handleQuantityChange = (index, value) => {
     const updatedQuantities = [...packageQuantity];
     updatedQuantities[index] = value;
     setItemQuantity(updatedQuantities);
   };
-
-  let itemBarcode;
+  const existingBarcodes = whDb.flatMap((item) =>
+    item.packages.map((pkg) => pkg.barcode)
+  );
 
   function barcodeCreator() {
-    const randomNumber = Math.floor(Math.random() * 1000000);
-    const paddedNumber = randomNumber.toString().padStart(6, "0");
+    const randomNumber = Math.floor(Math.random() * 100000);
+    return `EK-${randomNumber.toString().padStart(6, "0")}`;
+  }
 
-    itemBarcode = `EK-${paddedNumber}`;
-    return itemBarcode;
+  // Ensures the generated barcode is unique
+  function getUniqueBarcode() {
+    let barcode;
+    do {
+      barcode = barcodeCreator();
+    } while (existingBarcodes.includes(barcode));
+
+    // Add it to the array so next generated barcode won't duplicate
+    existingBarcodes.push(barcode);
+    return barcode;
   }
 
   const handleItemForm = (e) => {
@@ -46,7 +66,7 @@ export function ItemModal({ userData, submitItem }) {
       DoA: dateOfArrival,
       quantity: qty,
       receivedBy: loggedUser,
-      barcode: barcodeCreator(),
+      barcode: getUniqueBarcode(),
       paperSize: paperSize,
     }));
     submitItem(itemObjects);

@@ -1,0 +1,63 @@
+[
+  {
+    "itemRivile": "Mech_Co_Seat",
+    "itemInfo": "Lithuania 2024/10-RM",
+    "itemDate": "2024-08-08",
+    "itemAmount": "200 vnt.",
+    "itemBoxes": [
+      {
+        "boxBarcode": "EK-454758",
+        "boxVacancy": "Given to production 2025-02-01",
+        "boxAmount": "50 vnt."
+      },
+      {
+        "boxBarcode": "EK-454759",
+        "boxVacancy": "Available",
+        "boxAmount": "50 vnt."
+      },
+      {
+        "boxBarcode": "EK-454757",
+        "boxVacancy": "Available",
+        "boxAmount": "50 vnt."
+      },
+      {
+        "boxBarcode": "EK-454756",
+        "boxVacancy": "Given to production 2025-01-03",
+        "boxAmount": "50 vnt."
+      }
+    ]
+  },
+  {
+    "itemRivile": "Mech_Co_Foot",
+    "itemInfo": "Lithuania 2024/11",
+    "itemDate": "2024-10-01",
+    "itemAmount": "1000 vnt.",
+    "itemBoxes": [
+      {
+        "boxBarcode": "EK-421142",
+        "boxVacancy": "Available",
+        "boxAmount": "200 vnt."
+      },
+      {
+        "boxBarcode": "EK-421141",
+        "boxVacancy": "Available",
+        "boxAmount": "200 vnt."
+      },
+      {
+        "boxBarcode": "EK-421143",
+        "boxVacancy": "Available",
+        "boxAmount": "200 vnt."
+      },
+      {
+        "boxBarcode": "EK-421144",
+        "boxVacancy": "Available",
+        "boxAmount": "200 vnt."
+      },
+      {
+        "boxBarcode": "EK-421145",
+        "boxVacancy": "Given to production 2025-01-03",
+        "boxAmount": "200 vnt."
+      }
+    ]
+  }
+]

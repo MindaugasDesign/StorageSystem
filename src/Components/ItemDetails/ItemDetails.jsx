@@ -1,5 +1,5 @@
 // ItemDetails.jsx
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import "./ItemDetails.css";
 import Barcode from "react-barcode";
 import downloadBtn from "/src/assets/download-svgrepo-com.svg";
@@ -9,11 +9,19 @@ import { useRef } from "react";
 
 export function ItemDetails() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { data, itemName, itemUnit, itemRivile } = location.state || {};
+
+  const detailBtn = () => {
+    navigate("/item_log");
+  };
 
   return (
     <>
-      <h2 id="open_Item">{itemName}</h2>
+      <div>
+        <h2 id="open_Item">{itemName}</h2>
+        <button onClick={detailBtn}>Details</button>
+      </div>
       <div id="list_Container">
         {data.map((singleItem) => (
           <SingleItem

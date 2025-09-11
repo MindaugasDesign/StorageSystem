@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState, useEffect } from "react";
 import "./FindItem.css";
 
@@ -89,5 +90,12 @@ export function FindItem({ data, onFilter }) {
         Empty Only
       </label>
     </div>
+=======
+export function FindItem() {
+  return (
+    <>
+      <h1>This is find item</h1>
+    </>
+>>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
   );
 }

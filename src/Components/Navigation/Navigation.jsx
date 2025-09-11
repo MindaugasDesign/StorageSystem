@@ -63,9 +63,15 @@ export function Navigation({ tableRef }) {
           <button className="single_button" onClick={receiveItemPage}>
             Receive items
           </button>
+<<<<<<< HEAD
           {/* <button className="single_button" onClick={findItem}>
             Find Item
           </button> */}
+=======
+          <button className="single_button" onClick={findItem}>
+            Find Item
+          </button>
+>>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
           {userRole === "Admin" ||
             (userRole === "Accounting" && isTableReady && (
               <DownloadTableExcel

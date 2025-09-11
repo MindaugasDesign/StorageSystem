@@ -6,7 +6,11 @@
 
 /* Page Title */
 #pageTitle {
+<<<<<<< HEAD
   margin-left: 0.5em;
+=======
+  margin-left: 2em;
+>>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
   font-size: 1.5em;
   font-weight: bold;
   color: #0f265c;

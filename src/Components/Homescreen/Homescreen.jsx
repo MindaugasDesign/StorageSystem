@@ -18,10 +18,6 @@ function calculateQuantity(arrays) {
 }
 
 export function Homescreen({ tableRef }) {
-<<<<<<< HEAD
-=======
-  // 👈 receive tableRef as prop
->>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
   const [currentDate, setCurrentDate] = useState(getDate());
   const [warehouseData, setWarehouseData] = useState([]);
   const [filteredData, setFilteredData] = useState([]);
@@ -30,7 +26,6 @@ export function Homescreen({ tableRef }) {
 
   useEffect(() => {
     const user = localStorage.getItem("Power");
-<<<<<<< HEAD
     setShowControls(user === "Admin");
   }, []);
 
@@ -41,13 +36,6 @@ export function Homescreen({ tableRef }) {
         setWarehouseData(data);
         setFilteredData(data); // initialize filtered data
       });
-=======
-    if (user === "Admin") {
-      setShowControls(true);
-    } else {
-      setShowControls(false);
-    }
->>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
   }, []);
 
   function openDetails(item, itemName, unit, itemRivile) {
@@ -65,7 +53,6 @@ export function Homescreen({ tableRef }) {
     <div className="table_Wrapper">
       <div id="pageTitle">
         <h1 id="page_Date">{currentDate}</h1>
-<<<<<<< HEAD
 
         <div className="filterSection">
           <h2>Warehouse material list</h2>
@@ -73,10 +60,6 @@ export function Homescreen({ tableRef }) {
         </div>
       </div>
 
-=======
-        <h2>Warehouse material list</h2>
-      </div>
->>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
       <div id="stock_Table">
         <table id="wh_Stock" ref={tableRef}>
           <thead className="table_Headers">
@@ -89,18 +72,11 @@ export function Homescreen({ tableRef }) {
               <th>Kiekis</th>
               <th>Informacija</th>
               <th>Lokacija</th>
-<<<<<<< HEAD
               {showControls && <th>Valdymas</th>}
             </tr>
           </thead>
           <tbody className="table_Contents">
             {filteredData.map((item, index) => (
-=======
-            </tr>
-          </thead>
-          <tbody className="table_Contents">
-            {warehouseData.map((item, index) => (
->>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
               <tr className="body_Row" key={index}>
                 <td>{item.rivile}</td>
                 <td>{item.name}</td>

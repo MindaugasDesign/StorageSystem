@@ -28,11 +28,7 @@ function App() {
           }
         />
         <Route
-<<<<<<< HEAD
           path="/item_log"
-=======
-          path="/testpage"
->>>>>>> 475407b4d06dd2385649eca88a9170ef57132b6a
           element={
             <div id="testx">
               <ReceiveItemLog />

@@ -65,7 +65,7 @@ export function Homescreen({ tableRef }) {
           <thead className="table_Headers">
             <tr className="header_Row">
               <th>Rivilė</th>
-              <th>Pavadinimass</th>
+              <th>Pavadinimas</th>
               <th>Išorinis kodas</th>
               <th>Tiekėjas</th>
               <th>Mato vienetas</th>

@@ -1,5 +1,5 @@
-.modal {
-  display: none; /* Hidden by default */
+/* Modal Overlay */
+.modals {
   position: fixed;
   z-index: 1000;
   left: 0;
@@ -7,18 +7,19 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); /* Dark overlay */
-  padding-top: 100px;
+  background-color: rgba(0, 0, 0, 0.4); /* dark overlay */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
 }
 
 /* Modal Content */
-.content-modal {
+.content-modals {
   background-color: #edf2fc;
-  margin: auto;
   padding: 30px 40px;
-  border: 1px solid #888;
   border-radius: 16px;
-  width: 90%;
+  width: 100%;
   max-width: 600px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
   position: relative;
@@ -37,20 +38,22 @@
   }
 }
 
+/* Close button */
 .close {
-  color: #888;
-  float: right;
+  position: absolute;
+  top: 16px;
+  right: 16px;
   font-size: 28px;
   font-weight: bold;
+  color: #888;
   cursor: pointer;
 }
 
-.close:hover,
-.close:focus {
+.close:hover {
   color: #000;
-  text-decoration: none;
 }
 
+/* Modal header */
 .modalHeader {
   text-align: center;
   font-size: 1.6rem;
@@ -58,23 +61,24 @@
   margin-bottom: 1em;
 }
 
+/* Form container */
 .receiveItemCont {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 1.5em;
   border-radius: 16px;
   box-shadow: 5px 10px 8px #888888;
 }
 
-form#newItem {
+/* Form inputs */
+form#editItemForm {
   display: flex;
   flex-direction: column;
   gap: 1em;
 }
 
-form#newItem input[type="text"],
-form#newItem input[type="number"],
-form#newItem input[type="date"],
-form#newItem select {
+form#editItemForm input[type="text"],
+form#editItemForm input[type="number"],
+form#editItemForm select {
   padding: 0.6em 0.8em;
   font-weight: bold;
   border-radius: 8px;
@@ -84,16 +88,15 @@ form#newItem select {
   transition: border-color 0.3s, background-color 0.3s;
 }
 
-form#newItem input[type="text"]:focus,
-form#newItem input[type="number"]:focus,
-form#newItem input[type="date"]:focus,
-form#newItem select:focus {
+form#editItemForm input:focus,
+form#editItemForm select:focus {
   outline: none;
   border-color: #3498db;
   background-color: #fff;
 }
 
-form#newItem input[type="submit"] {
+/* Submit button */
+form#editItemForm input[type="submit"] {
   background-color: #3498db;
   color: white;
   padding: 0.8em;
@@ -105,6 +108,6 @@ form#newItem input[type="submit"] {
   transition: background-color 0.3s ease;
 }
 
-form#newItem input[type="submit"]:hover {
+form#editItemForm input[type="submit"]:hover {
   background-color: #2980b9;
 }

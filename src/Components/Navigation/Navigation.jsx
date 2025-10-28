@@ -42,7 +42,6 @@ export function Navigation({ tableRef }) {
   const newItemPage = () => navigate("/new_item");
   const receiveItemPage = () => navigate("receive_items");
   const scanOut = () => navigate("/scan_out");
-  const findItem = () => navigate("/find_item");
   const isLoggedIn = !!userRole;
 
   return (

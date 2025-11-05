@@ -91,6 +91,7 @@ export function ReceiveItems() {
     setItemList((prev) => [...prev, ...itemDataArray]);
     modal.style.display = "none";
   };
+  console.log(itemList);
 
   const handleAcceptClick = async () => {
     if (itemList.length === 0) {
@@ -99,19 +100,40 @@ export function ReceiveItems() {
     }
 
     try {
+      // 1️⃣ Send items to warehouse
       const res = await fetch("http://localhost:7750/addPackages", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(itemList),
       });
+
       if (!res.ok) throw new Error("Failed to submit packages.");
       const data = await res.json();
-      console.log("✅ Server response:", data);
+      console.log("✅ Warehouse updated:", data);
+
+      // 2️⃣ Log "received" items
+      const logRes = await fetch("http://localhost:7750/logPackages", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(
+          itemList.map((pkg) => ({
+            barcode: pkg.barcode,
+            rivile: pkg.rivile,
+            shippingRemarks: pkg.shippingRemarks,
+            quantity: pkg.quantity,
+            receivedBy: pkg.receivedBy,
+            DoA: pkg.DoA,
+            status: "Available",
+          }))
+        ),
+      });
+
+      if (!logRes.ok) throw new Error("Failed to create logs.");
+      console.log("🧾 Log entries added successfully.");
+
+      // 3️⃣ Generate PDF
       setTimeout(async () => {
         await generatePDFLabels();
-        // alert("Packages submitted successfully! PDF downloaded.");
         setItemList([]);
       }, 100);
     } catch (err) {
@@ -130,11 +152,6 @@ export function ReceiveItems() {
     span.onclick = function () {
       modal.style.display = "none";
     };
-    // window.onclick = function (event) {
-    //   if (event.target == modal) {
-    //     modal.style.display = "none";
-    //   }
-    // };
   };
 
   return (

@@ -13,7 +13,9 @@ export function ItemDetails() {
   const { data, itemName, itemUnit, itemRivile } = location.state || {};
 
   const detailBtn = () => {
-    navigate("/item_log");
+    navigate("/item_log", {
+      state: { itemRivile: itemRivile },
+    });
   };
 
   return (

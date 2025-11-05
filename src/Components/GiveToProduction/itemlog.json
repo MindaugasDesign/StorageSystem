@@ -1,0 +1,16 @@
+[
+  {
+    "date": "2025-11-05",
+    "actions": [
+      {
+        "boxBarcode": "*****",
+        "boxShipment": "Test Receive",
+        "boxProduct": "Mech_Co_Foot",
+        "boxQuanity": "50",
+        "boxUoM": "vnt",
+        "personScanned": "Modestas",
+        "dateScanned": "2025-11-04"
+      }
+    ]
+  }
+]

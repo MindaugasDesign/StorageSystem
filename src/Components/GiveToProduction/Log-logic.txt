@@ -1,0 +1,15 @@
+When an item is received it creates a separate log that contains all of the information (the same object? gonna think this)
+That log has:
+*Container name
+*Date received
+*Amount
+* Who received it
+*Barcode of the item
+
+And when the item is scanned out - 2 logs are updated:
+//* Day log ( what has been scanend out that date and store by days (see itemlog.json) )
+//*Update the received item log (update the barcode data with the scanned out date ) :
+Everything the same just the date is scanned out date and scanned by: 
+
+
+

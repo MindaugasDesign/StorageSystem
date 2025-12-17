@@ -5,8 +5,11 @@ import logOut from "/src/assets/logout-2-svgrepo-com.svg";
 import userIcon from "/src/assets/user-svgrepo-com.svg";
 import { useEffect, useState } from "react";
 import { DownloadTableExcel } from "react-export-table-to-excel";
+import reportIcon from "/src/assets/bill-svgrepo-com.svg";
 
 export function Navigation({ tableRef }) {
+  const navigate = useNavigate();
+
   const [isTableReady, setIsTableReady] = useState(false);
 
   useEffect(() => {
@@ -14,7 +17,6 @@ export function Navigation({ tableRef }) {
       setIsTableReady(true);
     }
   }, [tableRef.current]);
-  const navigate = useNavigate();
   const [userRole, setUserRole] = useState(localStorage.getItem("Power"));
 
   useEffect(() => {
@@ -25,62 +27,110 @@ export function Navigation({ tableRef }) {
     return () => window.removeEventListener("storage", handleStorageChange);
   }, []);
 
-  const homePage = () => {
-    if (userRole) {
-      navigate("/main");
-    } else {
+  useEffect(() => {
+    if (!userRole) return;
+
+    const timer = setTimeout(() => {
+      localStorage.removeItem("Power");
+      localStorage.removeItem("LoggedUser");
+      window.location.href = "/";
+    }, 3600000);
+
+    // cleanup when userRole changes or component unmounts
+    return () => clearTimeout(timer);
+  }, [userRole]);
+
+  const buttonEffects = (action) => {
+    if (action === "homepage") {
+      if (userRole) {
+        navigate("/main");
+      } else {
+        navigate("/");
+      }
+    } else if (action === "login") {
       navigate("/");
+    } else if (action === "logOut") {
+      localStorage.removeItem("Power");
+      window.dispatchEvent(new Event("storage"));
+      setUserRole(null);
+      localStorage.removeItem("LoggedUser");
+      navigate("/");
+    } else if (action === "scanReport") {
+      navigate("/scanning_report");
+    } else if (action === "newItem") {
+      navigate("/new_item");
+    } else if (action === "receiveItems") {
+      navigate("receive_items");
+    } else if (action === "scanOut") {
+      navigate("/scan_out");
     }
   };
-  const loginScreen = () => navigate("/");
-  const logOutBtn = () => {
-    localStorage.removeItem("Power");
-    window.dispatchEvent(new Event("storage"));
-    setUserRole(null);
-    navigate("/");
-  };
-  const newItemPage = () => navigate("/new_item");
-  const receiveItemPage = () => navigate("receive_items");
-  const scanOut = () => navigate("/scan_out");
+
   const isLoggedIn = !!userRole;
+  const canDownload = ["Admin", "Accounting", "Supervisor"].includes(userRole);
+  const canUse = ["Admin", "Accounting", "Supervisor", "Purchaser"].includes(
+    userRole
+  );
 
   return (
     <nav id="Main_Navigation">
-      <div className="logo_loc" onClick={homePage}>
+      <div className="logo_loc" onClick={() => buttonEffects("homepage")}>
         <img src={logo} alt="Ekornes Logo" />
       </div>
       {isLoggedIn && (
         <div className="direct_buttons">
           {userRole === "Admin" && (
-            <button className="single_button" onClick={newItemPage}>
+            <button
+              className="single_button"
+              onClick={() => buttonEffects("newItem")}
+            >
               Create New Items
             </button>
           )}
-          <button className="single_button" onClick={scanOut}>
+          <button
+            className="single_button"
+            onClick={() => buttonEffects("scanOut")}
+          >
             Give to production
           </button>
-          <button className="single_button" onClick={receiveItemPage}>
+          <button
+            className="single_button"
+            onClick={() => buttonEffects("receiveItems")}
+          >
             Receive items
           </button>
-          {/* <button className="single_button" onClick={findItem}>
-            Find Item
-          </button> */}
-          {userRole === "Admin" ||
-            (userRole === "Accounting" && isTableReady && (
-              <DownloadTableExcel
-                filename="warehouse-data"
-                sheet="Stock"
-                currentTableRef={tableRef.current}
-              >
-                <button className="single_button">Download Data</button>
-              </DownloadTableExcel>
-            ))}
+
+          {canDownload && isTableReady && (
+            <DownloadTableExcel
+              filename="warehouse-data"
+              sheet="Stock"
+              currentTableRef={tableRef.current}
+            >
+              <button className="single_button">Download Data</button>
+            </DownloadTableExcel>
+          )}
         </div>
       )}
       <div className="user_spot">
-        <img src={userIcon} alt="User Icon" onClick={loginScreen} />
+        {canUse && (
+          <img
+            className="reportBtn"
+            onClick={() => buttonEffects("scanReport")}
+            src={reportIcon}
+            alt=""
+          />
+        )}
+        {/* <img
+          src={userIcon}
+          alt="User Icon"
+          onClick={() => buttonEffects("login")}
+        /> */}
         {isLoggedIn && (
-          <img src={logOut} alt="Log Out Icon" onClick={logOutBtn} />
+          <img
+            src={logOut}
+            alt="Log Out Icon"
+            onClick={() => buttonEffects("logOut")}
+          />
         )}
       </div>
     </nav>

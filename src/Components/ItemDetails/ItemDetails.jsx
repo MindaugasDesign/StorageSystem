@@ -1,16 +1,16 @@
-// ItemDetails.jsx
 import { useLocation, useNavigate } from "react-router-dom";
 import "./ItemDetails.css";
-import Barcode from "react-barcode";
-import downloadBtn from "/src/assets/download-svgrepo-com.svg";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import { useRef } from "react";
+
+import { useState } from "react";
+import detailsLogo from "/src/assets/clipboard-svgrepo-com.svg";
 
 export function ItemDetails() {
+  const [userRole, setUserRole] = useState(localStorage.getItem("Power"));
+
   const location = useLocation();
   const navigate = useNavigate();
-  const { data, itemName, itemUnit, itemRivile } = location.state || {};
+  const { data = [], itemName, itemUnit, itemRivile } = location.state || {};
+  const canUse = ["Admin", "Supervisor", "Purchaser"].includes(userRole);
 
   const detailBtn = () => {
     navigate("/item_log", {
@@ -18,82 +18,50 @@ export function ItemDetails() {
     });
   };
 
+  // Group items by shippingRemarks
+  const groupedData = data.reduce((acc, item) => {
+    const remark = item.shippingRemarks || "No Remark";
+    if (!acc[remark]) acc[remark] = [];
+    acc[remark].push(item);
+    return acc;
+  }, {});
+
+  const sortedRemarks = Object.keys(groupedData).sort((a, b) =>
+    a.localeCompare(b)
+  );
+
   return (
     <>
-      <div>
+      <div className="itemDetailsHeader">
         <h2 id="open_Item">{itemName}</h2>
-        <button onClick={detailBtn}>Details</button>
+        {canUse && (
+          <div className="detailLogo" onClick={detailBtn}>
+            <img src={detailsLogo} alt="" />
+            <p>Details</p>
+          </div>
+        )}
       </div>
+
       <div id="list_Container">
-        {data.map((singleItem) => (
-          <SingleItem
-            key={singleItem.barcode}
-            details={singleItem}
-            itemName={itemName}
-            itemUnit={itemUnit}
-            itemRivile={itemRivile}
-          />
-        ))}
+        {sortedRemarks.map((remark) => {
+          const items = groupedData[remark];
+          const firstDate = items[0]?.DoA; // take first item's date
+
+          return (
+            <div key={remark} className="remarkGroup">
+              <h3 className="remarkTitle">{remark}</h3>
+              {firstDate && <h4 className="remarkDate">{firstDate}</h4>}
+              <ul className="remarkList">
+                {items.map((item) => (
+                  <li key={item.barcode} className="itemListEntry">
+                    {item.barcode} — {item.quantity} {itemUnit}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })}
       </div>
     </>
-  );
-}
-
-function SingleItem({ details, itemName, itemUnit, itemRivile }) {
-  const textWrapperRef = useRef(null);
-
-  const handleDownloadPDF = async () => {
-    const element = textWrapperRef.current;
-    if (!element) return;
-
-    const canvas = await html2canvas(element, {
-      scale: 2,
-      backgroundColor: "#ffffff", // or null for transparent
-    });
-
-    const imgData = canvas.toDataURL("image/png");
-    const pdf = new jsPDF({
-      orientation: "portrait",
-      unit: "pt",
-      format: "a4",
-    });
-
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const imgProps = pdf.getImageProperties(imgData);
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-    pdf.addImage(imgData, "PNG", 15, 10, pdfWidth, pdfHeight);
-    pdf.save(`${itemName}_${details.barcode}.pdf`);
-  };
-
-  return (
-    <div className="itemContainer">
-      <div className="textWrapper" ref={textWrapperRef}>
-        <div className="barcodeLoc">
-          <Barcode
-            value={details.barcode}
-            width={2.3}
-            height={50}
-            fontSize={16}
-            displayValue={true}
-            background="#FFFFFF"
-            lineColor="#000"
-          />
-        </div>
-        <p className="itemRemarks">{details.shippingRemarks}</p>
-        <p className="itemRivile">{itemRivile}</p>
-        <p className="itemName">{itemName}</p>
-        <p className="itemQuantity">{`${details.quantity} ${itemUnit}`}</p>
-        <p className="itemDoA">{details.DoA}</p>
-      </div>
-
-      <div
-        className="download_Btn"
-        onClick={handleDownloadPDF}
-        style={{ cursor: "pointer" }}
-      >
-        <img src={downloadBtn} alt="Download Button" />
-      </div>
-    </div>
   );
 }

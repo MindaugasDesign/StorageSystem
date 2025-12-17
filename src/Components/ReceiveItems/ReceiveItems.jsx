@@ -7,13 +7,20 @@ import { ItemModal } from "../ReceiveItemModal/ItemModal";
 import Barcode from "react-barcode";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
+import { useNavigate } from "react-router-dom";
 
 export function ReceiveItems() {
+  const navigate = useNavigate();
   const [whData, setWarehouseData] = useState([]);
   const [userData, setUserData] = useState([]);
   const [itemList, setItemList] = useState([]);
+  const [userRole, setUserRole] = useState(localStorage.getItem("Power"));
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
+
   useEffect(() => {
-    fetch("http://localhost:7750/items")
+    fetch(`${BACKEND}/items`)
       .then((res) => res.json())
       .then((data) => {
         setWarehouseData(data);
@@ -52,7 +59,7 @@ export function ReceiveItems() {
         );
         if (!element) continue;
 
-        const canvas = await html2canvas(element, { scale: 2, useCORS: true });
+        const canvas = await html2canvas(element, { scale: 3, useCORS: true });
         const imgData = canvas.toDataURL("image/png");
 
         const pageWidth = pdf.internal.pageSize.getWidth();
@@ -91,7 +98,6 @@ export function ReceiveItems() {
     setItemList((prev) => [...prev, ...itemDataArray]);
     modal.style.display = "none";
   };
-  console.log(itemList);
 
   const handleAcceptClick = async () => {
     if (itemList.length === 0) {
@@ -101,7 +107,7 @@ export function ReceiveItems() {
 
     try {
       // 1️⃣ Send items to warehouse
-      const res = await fetch("http://localhost:7750/addPackages", {
+      const res = await fetch("http://192.168.116.65:7750/addPackages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(itemList),
@@ -112,7 +118,7 @@ export function ReceiveItems() {
       console.log("✅ Warehouse updated:", data);
 
       // 2️⃣ Log "received" items
-      const logRes = await fetch("http://localhost:7750/logPackages", {
+      const logRes = await fetch("http://192.168.116.65:7750/logPackages", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
@@ -142,6 +148,14 @@ export function ReceiveItems() {
     }
   };
 
+  const cancelReceive = () => {
+    if (userRole) {
+      navigate("/main");
+    } else {
+      navigate("/");
+    }
+  };
+
   const modalUse = () => {
     const modal = document.getElementById("itemModal");
     const btn = document.getElementById("modalControl");
@@ -156,8 +170,8 @@ export function ReceiveItems() {
 
   return (
     <>
-      <div className="ha">
-        <h1>Receive Items</h1>
+      <div className="receiveItems_Title">
+        <h1 className="receiveItems_Header1">Receive Items</h1>
 
         <div className="controlBtns_Receive">
           <img
@@ -169,7 +183,7 @@ export function ReceiveItems() {
             }}
           />
 
-          <img src={cancelBtn} alt="" />
+          <img src={cancelBtn} alt="" onClick={cancelReceive} />
         </div>
       </div>
 
@@ -204,24 +218,24 @@ function DataBlock({ props, whData }) {
   const correctItem = whData.find((item) => item.rivile === props.rivile);
   return (
     <div className="allitems">
-      <p>
+      <div className="barcodeLoc">
         <Barcode
           value={props.barcode}
           width={2.3}
-          height={50}
-          fontSize={16}
+          height={30}
+          fontSize={13}
           displayValue={true}
           background="#FFFFFF"
           lineColor="#000"
         />
-      </p>
-      <h2>{props.rivile}</h2>
-      <p>{props.shippingRemarks}</p>
-      <p>{props.DoA}</p>
-      <p>
+      </div>
+      <h2 className="item-rivile">{props.rivile}</h2>
+      <p className="item-name">{correctItem.name}</p>
+      <p className="item-remarks">{props.shippingRemarks}</p>
+      <p className="item-doa">{props.DoA}</p>
+      <p className="item-quantity">
         {props.quantity} {correctItem.UoM}
       </p>
-      <p>{props.paperSize}</p>
     </div>
   );
 }

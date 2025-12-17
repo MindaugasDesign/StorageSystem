@@ -12,6 +12,9 @@ export function NewItem() {
   const [itemPerson, setItemPerson] = useState("");
   const [itemLocation, setItemLocation] = useState("");
   const navigate = useNavigate();
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
 
   const newItemFunction = (e) => {
     e.preventDefault();
@@ -35,7 +38,7 @@ export function NewItem() {
     };
     navigate("/main");
 
-    fetch("http://localhost:7750/createNewItem", {
+    fetch(`${BACKEND}/createNewItem`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -47,69 +50,71 @@ export function NewItem() {
   return (
     <>
       <div className="newItem_Title">
-        <h1>Hello add new item</h1>
+        <h1>Create new item</h1>
       </div>
-      <div className="newItem_Form">
-        <form id="newItemCreate" onSubmit={(e) => newItemFunction(e)}>
-          <input
-            type="text"
-            name="rivile"
-            id="rivile"
-            placeholder="Rivilė"
-            value={itemRivile}
-            onChange={(e) => setItemRivile(e.target.value)}
-          />
-          <input
-            type="text"
-            name="name"
-            id="name"
-            placeholder="Pavadinimas"
-            value={itemName}
-            onChange={(e) => setItemName(e.target.value)}
-          />
-          <input
-            type="text"
-            name="itemId"
-            id="itemId"
-            placeholder="Išorinis kodas"
-            value={itemId}
-            onChange={(e) => setItemId(e.target.value)}
-          />
-          <input
-            type="text"
-            name="supplier"
-            id="supplier"
-            placeholder="Tiekėjas"
-            value={itemSupplier}
-            onChange={(e) => setItemSupplier(e.target.value)}
-          />
-          <input
-            type="text"
-            name="UoM"
-            id="UoM"
-            placeholder="Mato vienetas"
-            value={itemUoM}
-            onChange={(e) => setItemUoM(e.target.value)}
-          />
-          <input
-            type="text"
-            name="keeper"
-            id="keeper"
-            placeholder="Atsakingas Asmuo"
-            value={itemPerson}
-            onChange={(e) => setItemPerson(e.target.value)}
-          />
-          <input
-            type="text"
-            name="location"
-            id="location"
-            placeholder="Lokacija"
-            value={itemLocation}
-            onChange={(e) => setItemLocation(e.target.value)}
-          />
+      <div className="newItem_wrapper">
+        <div className="newItem_Form">
+          <form id="newItemCreate" onSubmit={(e) => newItemFunction(e)}>
+            <input
+              type="text"
+              name="rivile"
+              id="rivile"
+              placeholder="Rivilė"
+              value={itemRivile}
+              onChange={(e) => setItemRivile(e.target.value)}
+            />
+            <input
+              type="text"
+              name="name"
+              id="name"
+              placeholder="Pavadinimas"
+              value={itemName}
+              onChange={(e) => setItemName(e.target.value)}
+            />
+            <input
+              type="text"
+              name="itemId"
+              id="itemId"
+              placeholder="Išorinis kodas"
+              value={itemId}
+              onChange={(e) => setItemId(e.target.value)}
+            />
+            <input
+              type="text"
+              name="supplier"
+              id="supplier"
+              placeholder="Tiekėjas"
+              value={itemSupplier}
+              onChange={(e) => setItemSupplier(e.target.value)}
+            />
+            <input
+              type="text"
+              name="UoM"
+              id="UoM"
+              placeholder="Mato vienetas"
+              value={itemUoM}
+              onChange={(e) => setItemUoM(e.target.value)}
+            />
+            <input
+              type="text"
+              name="keeper"
+              id="keeper"
+              placeholder="Atsakingas Asmuo"
+              value={itemPerson}
+              onChange={(e) => setItemPerson(e.target.value)}
+            />
+            <input
+              type="text"
+              name="location"
+              id="location"
+              placeholder="Lokacija"
+              value={itemLocation}
+              onChange={(e) => setItemLocation(e.target.value)}
+            />
 
-          <input type="submit" value="Pridėti" />
-        </form>
+            <input type="submit" value="Pridėti" />
+          </form>
+        </div>
       </div>
     </>
   );

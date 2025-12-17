@@ -11,8 +11,13 @@ export function ItemModal({ userData, submitItem }) {
   const [paperSize, setPaperSize] = useState("");
 
   const [whDb, setWarehouseDB] = useState([]);
+
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
+
   useEffect(() => {
-    fetch("http://localhost:7750/items")
+    fetch(`${BACKEND}/items`)
       .then((res) => res.json())
       .then((data) => {
         setWarehouseDB(data);

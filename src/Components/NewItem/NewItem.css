@@ -53,3 +53,15 @@
   cursor: pointer;
   transform: scale(1.05);
 }
+
+.newItem_wrapper {
+  margin-top: 13vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh - 3em;
+}
+
+.newItem_Title h1 {
+  margin: 0.5em 1.5em;
+}

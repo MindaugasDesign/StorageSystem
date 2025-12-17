@@ -11,9 +11,13 @@ export function ReceiveItemLog() {
   const [allItems, setAllItems] = useState([]);
   const [allLogs, setAllLogs] = useState([]);
 
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
+
   // Fetch warehouse items
   useEffect(() => {
-    fetch("http://localhost:7750/items")
+    fetch(`${BACKEND}/items`)
       .then((res) => res.json())
       .then((data) => setAllItems(data))
       .catch((err) => console.error("Error fetching items:", err));
@@ -21,7 +25,7 @@ export function ReceiveItemLog() {
 
   // Fetch logs
   useEffect(() => {
-    fetch("http://localhost:7750/itemLogs")
+    fetch(`${BACKEND}/itemLogs`)
       .then((res) => res.json())
       .then((logs) => setAllLogs(logs))
       .catch((err) => console.error("Error fetching logs:", err));

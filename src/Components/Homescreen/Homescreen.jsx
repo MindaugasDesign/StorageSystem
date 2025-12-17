@@ -26,6 +26,9 @@ export function Homescreen({ tableRef }) {
   const [selectedItem, setSelectedItem] = useState(null);
   const [showControls, setShowControls] = useState(false);
   const navigate = useNavigate();
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
 
   useEffect(() => {
     const user = localStorage.getItem("Power");
@@ -33,7 +36,7 @@ export function Homescreen({ tableRef }) {
   }, []);
 
   useEffect(() => {
-    fetch("http://localhost:7750/items")
+    fetch(`${BACKEND}/items`)
       .then((res) => res.json())
       .then((data) => {
         setWarehouseData(data);
@@ -52,7 +55,7 @@ export function Homescreen({ tableRef }) {
     setFilteredData((prev) => prev.filter((i) => i._id !== itemId));
 
     try {
-      const res = await fetch(`http://localhost:7750/items/${itemId}`, {
+      const res = await fetch(`${BACKEND}/items/${itemId}`, {
         method: "DELETE",
       });
       if (!res.ok) throw new Error("Delete failed");

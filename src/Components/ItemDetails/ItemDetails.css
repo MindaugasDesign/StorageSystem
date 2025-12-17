@@ -1,16 +1,9 @@
-#open_Item {
-  font-size: 3em;
-  margin-left: 1em;
-}
+/* =========================
+   UNUSED / OLD STYLES (commented out)
+   These were used for full item cards and PDF downloads
+============================ */
 
-#list_Container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  gap: 1.5em;
-  margin-left: 2em;
-}
-
+/*
 .itemContainer {
   background-color: #ffffff;
   width: 20%;
@@ -20,20 +13,24 @@
 }
 
 .textWrapper {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #ffffff;
+  border-radius: 12px;
   display: flex;
   flex-direction: column;
-}
-
-.itemContainer p {
-  margin: 0.5em;
+  justify-content: space-between;
 }
 
 .barcodeLoc {
   text-align: center;
+  width: 100%;
+  max-width: 100%;
 }
 
-.download_Btn img {
-  width: 2em;
+.barcodeLoc svg {
+  width: 100% !important;
+  height: auto !important;
 }
 
 .download_Btn {
@@ -43,14 +40,145 @@
   margin-right: 1em;
 }
 
+.download_Btn img {
+  width: 2em;
+}
+
 .download_Btn img:hover {
   cursor: pointer;
   transform: scale(1.1);
 }
 
-.itemRivile,
-.itemQuantity,
-.itemDoA {
+.textWrapper h2 {
+  font-size: 1.2em;
+  margin: 0 0.5em;
+}
+
+.textWrapper p {
+  margin: 0.25em 0.5em;
+  font-size: 1em;
+}
+
+.item-rivile {
+  font-size: 1.2em;
   font-weight: bold;
-  font-size: large;
+  margin: 0.15em 0.2em;
+  color: #000;
+  text-align: center;
+}
+
+.item-remarks {
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0.3em 0.5em;
+  color: #444;
+}
+
+.item-doa {
+  font-size: 1em;
+  color: #555;
+  margin: 0.3em 0.5em;
+}
+
+.textWrapper .item-quantity {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #222;
+  text-align: right;
+  margin-top: -0.3em;
+  margin-bottom: 0.5em;
+}
+
+.item-name {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin: 0.2em 0.5em;
+  color: #333;
+  text-align: center;
+}
+*/
+
+/* =========================
+   ACTIVE STYLES (used for list view)
+============================ */
+
+/* Header */
+.itemDetailsHeader {
+  display: flex;
+  width: 95%;
+  justify-content: space-between;
+}
+
+.detailLogo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.detailLogo p {
+  margin: 0;
+  font-size: small;
+}
+
+.detailLogo:hover {
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+.detailLogo img {
+  height: 4em;
+}
+
+#open_Item {
+  font-size: 3em;
+  margin-left: 1em;
+}
+
+/* List container */
+#list_Container {
+  display: flex;
+  flex-direction: column; /* stack remark groups vertically */
+  flex-wrap: nowrap;
+  gap: 1.5em;
+  margin: 0 2em;
+}
+
+/* Remark group */
+/* .remarkGroup {
+  margin-bottom: 25px;
+} */
+
+/* Remark title */
+.remarkTitle {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 8px;
+  color: #222;
+}
+
+/* List of items under a remark */
+.remarkList {
+  list-style-type: none;
+  padding-left: 1.5em;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+
+/* Individual list entry */
+.itemListEntry {
+  background-color: #fafafa;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 0.6em 1em;
+  font-size: 1.1em;
+  color: #111;
+  width: 20%;
+}
+
+.remarkDate {
+  margin-left: 3em;
+  margin-top: -0.5em;
 }

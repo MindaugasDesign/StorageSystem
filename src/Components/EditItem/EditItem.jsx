@@ -10,6 +10,10 @@ export function EditItem({ item, onClose, onUpdate }) {
   const [itemPerson, setItemPerson] = useState("");
   const [itemLocation, setItemLocation] = useState("");
 
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
+
   useEffect(() => {
     if (item) {
       setItemRivile(item.rivile || "");
@@ -49,7 +53,7 @@ export function EditItem({ item, onClose, onUpdate }) {
       packages: item.packages || [],
     };
 
-    fetch(`http://localhost:7750/items/${item._id}`, {
+    fetch(`${BACKEND}/items/${item._id}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

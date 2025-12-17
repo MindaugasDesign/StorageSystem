@@ -12,12 +12,14 @@ export function GiveToProduction() {
   const [filter, setFilter] = useState("");
 
   const inputRef = useRef(null);
-  const beepSuccess = useRef(null);
-  const beepError = useRef(null);
+
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
 
   // Fetch warehouse items
   useEffect(() => {
-    fetch("http://localhost:7750/items")
+    fetch(`${BACKEND}/items`)
       .then((res) => res.json())
       .then(setProductsDB)
       .catch((err) => console.error("Error fetching items:", err));
@@ -27,7 +29,7 @@ export function GiveToProduction() {
   useEffect(() => {
     const fetchLogs = async () => {
       try {
-        const res = await fetch("http://localhost:7750/itemLogs");
+        const res = await fetch(`${BACKEND}/itemLogs`);
         const logs = await res.json();
 
         const today = new Date().toDateString();
@@ -73,7 +75,6 @@ export function GiveToProduction() {
           </>
         ),
       });
-      beepError.current.play();
       return;
     }
 
@@ -83,13 +84,13 @@ export function GiveToProduction() {
     try {
       // DELETE the package (scanning out)
       const res = await fetch(
-        `http://localhost:7750/items/${found._id}/packages/${code}`,
+        `${BACKEND}/items/${found._id}/packages/${code}`,
         { method: "DELETE" }
       );
       if (!res.ok) throw new Error("Failed to delete from DB");
 
       // Log scan-out event
-      await fetch("http://localhost:7750/scanOutLog", {
+      await fetch(`${BACKEND}scanOutLog`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ barcode: code, scannedBy: user }),
@@ -117,11 +118,8 @@ export function GiveToProduction() {
           </>
         ),
       });
-
-      beepSuccess.current.play();
     } catch (err) {
       console.error("Error scanning out:", err);
-      beepError.current.play();
       setPreview({
         visible: true,
         type: "error",
@@ -219,16 +217,6 @@ export function GiveToProduction() {
           {new Set(filteredLogs.map((l) => l.rivile)).size}
         </div>
       </div>
-
-      {/* Sounds */}
-      <audio
-        ref={beepSuccess}
-        src="https://actions.google.com/sounds/v1/cartoon/wood_plank_flicks.ogg"
-      />
-      <audio
-        ref={beepError}
-        src="https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg"
-      />
     </div>
   );
 }

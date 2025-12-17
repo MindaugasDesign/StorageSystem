@@ -1,4 +1,4 @@
-import { useRef, useEffect, useState, use } from "react";
+import { useRef, useEffect, useState } from "react";
 import "./Login.css";
 import userPass from "/src/assets/key-square-2-svgrepo-com.svg";
 import userLogo from "/src/assets/user-rounded-svgrepo-com.svg";
@@ -14,12 +14,14 @@ export function Login() {
   const [emptyPassword, setEmptyPassword] = useState(false);
   const [wrongUser, setWrongUser] = useState(false);
 
+  const BACKEND = `http://${window.location.hostname}:${
+    import.meta.env.VITE_BACKEND_PORT
+  }`;
+
   useEffect(() => {
-    fetch("http://localhost:7750/systemusers")
+    fetch(`${BACKEND}/systemusers`)
       .then((res) => res.json())
-      .then((data) => {
-        setData(data);
-      });
+      .then((data) => setData(data));
   }, []);
 
   const loggedUser = (e) => {

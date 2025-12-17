@@ -1,7 +1,8 @@
-.ha {
+.receiveItems_Title {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  margin: 0 2em;
 }
 
 .controlBtns_Receive img {
@@ -12,18 +13,22 @@
   width: 5em;
 }
 
+.controlBtns_AddItem {
+  margin: 1em 2em;
+}
+
 .allitems {
   width: 100%;
   box-sizing: border-box;
   background-color: #ffffff;
-  /* border: 1px solid black; */
   border-radius: 12px;
-  /* padding: 1em; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  /* padding: 0.1em 0.2em; added for spacing */
 }
 
+/* General heading and paragraph defaults */
 .allitems h2 {
   font-size: 1.2em;
   margin: 0 0.5em;
@@ -34,23 +39,70 @@
   font-size: 1em;
 }
 
+/* Barcode section */
 .barcodeLoc {
   text-align: center;
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
+  width: 100%;
 }
 
+/* Label print layout */
 #labelPrintArea {
   display: flex;
   flex-direction: row;
   align-items: center;
   flex-wrap: wrap;
   gap: 1em;
-  /* width: 100%; */
   margin: 0 2em;
 }
 
 #label {
   width: 21cm;
   height: 10cm;
+}
+
+/* ------------------- */
+/* 🎨 Individual item styles */
+/* ------------------- */
+
+/* 🧾 Rivilės code (main item title) */
+.item-rivile {
+  font-size: 2.5em;
+  font-weight: bold;
+  margin: 0.15em 0.2em;
+  color: #000;
+  text-align: center;
+}
+
+/* 📦 Shipping remarks */
+.item-remarks {
+  font-size: 1.1em;
+  font-style: italic;
+  margin: 0.3em 0.5em;
+  color: #444;
+}
+
+/* 📅 Date of Arrival */
+.item-doa {
+  font-size: 1em;
+  color: #555;
+  margin: 0.3em 0.5em;
+}
+
+/* ⚖️ Quantity and unit */
+.allitems .item-quantity {
+  font-size: 1.6em;
+  font-weight: 600;
+  color: #222;
+  text-align: right;
+  margin-top: -0.3em;
+  margin-bottom: 0.5em;
+}
+
+/* 🏷️ Item name */
+.item-name {
+  font-size: 1.3em;
+  font-weight: 500;
+  margin: 0.2em 0.5em;
+  color: #333;
+  text-align: center;
 }

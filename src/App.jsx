@@ -10,6 +10,7 @@ import { useRef } from "react";
 import { ReceiveItemLog } from "./Components/ReceivedItemLog/ReceivedItemLog";
 import { GiveToProduction } from "./Components/GiveToProduction/GiveToProduction";
 import { FindItem } from "./Components/FindItem/FindItem";
+import { ScanOutReport } from "./Components/ScanOutReport/ScanOutReport";
 
 function App() {
   const tableRef = useRef(null); // ✅ create ref ONCE
@@ -81,6 +82,14 @@ function App() {
           element={
             <div id="findItem_page">
               <FindItem />
+            </div>
+          }
+        />
+        <Route
+          path="/scanning_report"
+          element={
+            <div id="scanningReport_page">
+              <ScanOutReport />
             </div>
           }
         />

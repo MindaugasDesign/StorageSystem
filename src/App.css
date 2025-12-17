@@ -14,3 +14,12 @@ body {
   width: 50%;
   height: calc(100vh - 4em);
 }
+
+#newItemContainer {
+  width: 100%;
+  height: calc(100vh - 5.5em);
+}
+
+#item_Details {
+  padding: 1em 0;
+}

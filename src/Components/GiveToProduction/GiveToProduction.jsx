@@ -90,7 +90,7 @@ export function GiveToProduction() {
       if (!res.ok) throw new Error("Failed to delete from DB");
 
       // Log scan-out event
-      await fetch(`${BACKEND}scanOutLog`, {
+      await fetch(`${BACKEND}/scanOutLog`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ barcode: code, scannedBy: user }),

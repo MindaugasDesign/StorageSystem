@@ -107,7 +107,7 @@ export function ReceiveItems() {
 
     try {
       // 1️⃣ Send items to warehouse
-      const res = await fetch("http://192.168.116.65:7750/addPackages", {
+      const res = await fetch(`${BACKEND}/addPackages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(itemList),
@@ -118,7 +118,7 @@ export function ReceiveItems() {
       console.log("✅ Warehouse updated:", data);
 
       // 2️⃣ Log "received" items
-      const logRes = await fetch("http://192.168.116.65:7750/logPackages", {
+      const logRes = await fetch(`${BACKEND}/logPackages`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(
